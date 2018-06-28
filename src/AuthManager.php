@@ -3,9 +3,9 @@
 namespace Vongola\Auth;
 
 
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\Session;
 
 class AuthManager
 {
@@ -32,6 +32,20 @@ class AuthManager
 
     public function forceLogoutOthers()
     {
-
+        $current = session()->getId();
+        foreach ($this->records as $record) {
+            $sid = decrypt($record->session_id);
+            if ($sid === $current) {
+                continue;
+            } else {
+                try {
+                    Session::forget($sid);
+                } catch (\Exception $e) {
+                    // Do nothing...
+                } finally {
+                    $record->delete();
+                }
+            }
+        }
     }
 }
