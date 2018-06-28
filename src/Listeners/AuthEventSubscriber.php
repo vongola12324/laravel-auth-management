@@ -11,6 +11,8 @@ namespace Vongola\Auth\Listeners;
 
 use Illuminate\Auth\Events\Login;
 use Illuminate\Auth\Events\Logout;
+use Illuminate\Contracts\Auth\Authenticatable;
+use Illuminate\Foundation\Auth\User;
 use Vongola\Auth\AuthRecord;
 use Vongola\Auth\Services\AuthService;
 
@@ -25,9 +27,11 @@ class AuthEventSubscriber
 
     /**
      * Handle user login events.
+     * @param Login $event
      */
     public function onUserLogin(Login $event)
     {
+        /** @var Authenticatable|User $user */
         $user = $event->user;
         $manager = $this->authService->user($user);
         if (config('auth-management.single-login')) {
@@ -47,9 +51,11 @@ class AuthEventSubscriber
 
     /**
      * Handle user logout events.
+     * @param Logout $event
      */
     public function onUserLogout(Logout $event)
     {
+        /** @var Authenticatable|User $user */
         $user = $event->user;
         $manager = $this->authService->user($user);
         AuthRecord::where('user_type', '=', get_class($user))
