@@ -1,0 +1,17 @@
+{
+    "name": "vongola12324/laravel-auth-management",
+    "description": "An advanced auth management mechanism.",
+    "keywords": [
+        "laravel", "auth", "management"
+    ],
+    "homepage": "https://github.com/vongola12324/laravel-auth-management",
+    "type": "library",
+    "require": {
+        "laravel/framework": "^5.6"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "~7.0"
+    },
+    "license": "MIT",
+    "minimum-stability": "stable"
+}
