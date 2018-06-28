@@ -40,7 +40,7 @@ class AuthEventSubscriber
             'user_id'    => $user->getKey(),
             'user_agent' => request()->userAgent() ,
             'login_ip'   => request()->getClientIp(),
-            'session_id' => session()->getId(),
+            'session_id' => encrypt(session()->getId()),
             'last_activity_at' => null,
         ]);
     }
