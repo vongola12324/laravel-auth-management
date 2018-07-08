@@ -81,12 +81,12 @@ class AuthEventSubscriber
     {
         $events->listen(
             'Illuminate\Auth\Events\Login',
-            'App\Listeners\UserEventSubscriber@onUserLogin'
+            'App\Listeners\AuthEventSubscriber@onUserLogin'
         );
 
         $events->listen(
             'Illuminate\Auth\Events\Logout',
-            'App\Listeners\UserEventSubscriber@onUserLogout'
+            'App\Listeners\AuthEventSubscriber@onUserLogout'
         );
     }
 }
