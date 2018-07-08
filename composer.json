@@ -43,7 +43,7 @@
                 "Vongola\\Auth\\Providers\\AuthManagementServiceProvider"
             ],
             "aliases": {
-                "AuthManager" => "Vongola\\Auth\\Facades\\AuthManagementFacade";
+                "AuthManager": "Vongola\\Auth\\Facades\\AuthManagementFacade"
             }
         }
     }
