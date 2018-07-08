@@ -15,14 +15,16 @@ use Illuminate\Contracts\Auth\Authenticatable;
 use Illuminate\Foundation\Auth\User;
 use Vongola\Auth\AuthRecord;
 use Vongola\Auth\Services\AuthService;
+use Vongola\Auth\Services\LogService;
 
 class AuthEventSubscriber
 {
-    protected $authService;
+    protected $authService, $logService;
 
-    public function __construct(AuthService $authService)
+    public function __construct(AuthService $authService, LogService $logService)
     {
         $this->authService = $authService;
+        $this->logService = $logService;
     }
 
     /**
@@ -39,14 +41,17 @@ class AuthEventSubscriber
                 $manager->forceLogoutOthers();
             };
         }
-        AuthRecord::create([
-            'user_type'  => get_class($user),
-            'user_id'    => $user->getKey(),
-            'user_agent' => request()->userAgent() ,
-            'login_ip'   => request()->getClientIp(),
-            'session_id' => encrypt(session()->getId()),
+        $record = AuthRecord::create([
+            'user_type'        => get_class($user),
+            'user_id'          => $user->getKey(),
+            'user_agent'       => request()->userAgent(),
+            'login_ip'         => request()->getClientIp(),
+            'session_id'       => encrypt(session()->getId()),
             'last_activity_at' => null,
         ]);
+        if (config('auth-management.logging')) {
+            $this->logService->loginLogging($user);
+        }
     }
 
     /**
@@ -62,6 +67,9 @@ class AuthEventSubscriber
             ->where('user_id', '=', $user->getKey())
             ->where('session_id', '=', session()->getId())
             ->delete();
+        if (config('auth-management.logging')) {
+            $this->logService->loginLogging($user);
+        }
     }
 
     /**

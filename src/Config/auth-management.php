@@ -15,4 +15,9 @@ return [
      * 是否紀錄用戶最後活動時間
      */
     'record-last-activity' => env('AUTH_MANAGEMENT_RECORD_LAST', false),
+
+    /*
+     * 是否紀錄用戶登入/登出事件
+     */
+    'logging'              => env('AUTH_MANAGEMENT_LOGGING', false),
 ];
