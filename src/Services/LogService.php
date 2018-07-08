@@ -47,11 +47,11 @@ class LogService
 
     protected function message(Authenticatable $user)
     {
-        return [
+        return json_encode([
             'user_type' => get_class($user),
             'user_id'   => $user->id,
             'ip'        => request()->ip(),
-        ];
+        ]);
     }
 
     protected function logging($level, $message)
