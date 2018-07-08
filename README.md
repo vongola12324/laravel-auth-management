@@ -13,7 +13,7 @@ composer require vongola12324/laravel-auth-management
 ```
 Then, publish config file to your project.  
 ```bash
-php artisan vendor:publish vongola12324/laravel-auth-management
+php artisan vendor:publish --provider="Vongola\Auth\Providers\AuthManagementServiceProvider"
 ```
 
 ## License
