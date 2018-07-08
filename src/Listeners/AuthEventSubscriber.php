@@ -81,12 +81,12 @@ class AuthEventSubscriber
     {
         $events->listen(
             'Illuminate\Auth\Events\Login',
-            'App\Listeners\AuthEventSubscriber@onUserLogin'
+            'Vongola\Auth\Listeners\AuthEventSubscriber@onUserLogin'
         );
 
         $events->listen(
             'Illuminate\Auth\Events\Logout',
-            'App\Listeners\AuthEventSubscriber@onUserLogout'
+            'Vongola\Auth\Listeners\AuthEventSubscriber@onUserLogout'
         );
     }
 }
