@@ -40,10 +40,10 @@
         "component": "package",
         "laravel": {
             "providers": [
-
+                "Vongola\\Auth\\Providers\\AuthManagementServiceProvider"
             ],
             "aliases": {
-
+                "AuthManager" => "Vongola\\Auth\\Facades\\AuthManagementFacade";
             }
         }
     }
