@@ -15,6 +15,10 @@ Then, publish config file to your project.
 ```bash
 php artisan vendor:publish --provider="Vongola\Auth\Providers\AuthManagementServiceProvider"
 ```
+Use migrate command to generate table.
+```
+php artisan migrate
+```
 
 ## License
 This project is license by MIT.
