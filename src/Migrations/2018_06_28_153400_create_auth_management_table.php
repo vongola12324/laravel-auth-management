@@ -11,7 +11,7 @@ class CreateAuthManagementTable extends Migration
     {
         Schema::create('auth_records', function (Blueprint $table) {
             $table->increments('id');
-            $table->unsignedInteger('user_type');
+            $table->string('user_type');
             $table->unsignedInteger('user_id');
             $table->string('user_agent');
             $table->string('login_ip');
