@@ -35,7 +35,7 @@ class LogService
     public function loginLogging(Authenticatable $user)
     {
         $this->logging(
-            $this->levels['debug'],
+            'debug',
             '[Auth][Login] User (id=' . $user->id . ') has logged in.' . $this->message($user)
         );
     }
@@ -43,7 +43,7 @@ class LogService
     public function logoutLogging(Authenticatable $user)
     {
         $this->logging(
-            $this->levels['debug'],
+            'debug',
             '[Auth][Logout] User (id=' . $user->id . ') has logged out.' . $this->message($user)
         );
     }
