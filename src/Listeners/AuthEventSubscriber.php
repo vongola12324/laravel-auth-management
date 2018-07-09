@@ -68,7 +68,7 @@ class AuthEventSubscriber
             ->where('session_id', '=', session()->getId())
             ->delete();
         if (config('auth-management.logging')) {
-            $this->logService->loginLogging($user);
+            $this->logService->logoutLogging($user);
         }
     }
 
