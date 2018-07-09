@@ -15,7 +15,7 @@ class CreateAuthManagementTable extends Migration
             $table->unsignedInteger('user_id');
             $table->string('user_agent');
             $table->string('login_ip');
-            $table->string('session_id');
+            $table->text('session_id');
             $table->timestamp('last_activity_at')->nullable();
             $table->softDeletes();
             $table->timestamps();
