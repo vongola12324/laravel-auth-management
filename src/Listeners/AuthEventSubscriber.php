@@ -8,7 +8,6 @@
 
 namespace Vongola\Auth\Listeners;
 
-
 use Illuminate\Auth\Events\Login;
 use Illuminate\Auth\Events\Logout;
 use Illuminate\Contracts\Auth\Authenticatable;
@@ -19,7 +18,8 @@ use Vongola\Auth\Services\LogService;
 
 class AuthEventSubscriber
 {
-    protected $authService, $logService;
+    protected $authService;
+    protected $logService;
 
     public function __construct(AuthService $authService, LogService $logService)
     {

@@ -2,10 +2,9 @@
 
 namespace Vongola\Auth\Services;
 
-use Monolog\Logger as MonologLogger;
-use Illuminate\Support\Facades\Log;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use Vongola\Auth\AuthRecord;
+use Illuminate\Support\Facades\Log;
+use Monolog\Logger as MonologLogger;
 
 class LogService
 {
@@ -35,14 +34,18 @@ class LogService
 
     public function loginLogging(Authenticatable $user)
     {
-        $this->logging($this->levels['debug'],
-            '[Auth][Login] User (id=' . $user->id . ') has logged in.' . $this->message($user));
+        $this->logging(
+            $this->levels['debug'],
+            '[Auth][Login] User (id=' . $user->id . ') has logged in.' . $this->message($user)
+        );
     }
 
     public function logoutLogging(Authenticatable $user)
     {
-        $this->logging($this->levels['debug'],
-            '[Auth][Logout] User (id=' . $user->id . ') has logged out.' . $this->message($user));
+        $this->logging(
+            $this->levels['debug'],
+            '[Auth][Logout] User (id=' . $user->id . ') has logged out.' . $this->message($user)
+        );
     }
 
     protected function message(Authenticatable $user)

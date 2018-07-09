@@ -2,8 +2,6 @@
 
 namespace Vongola\Auth\Providers;
 
-use Illuminate\Auth\Authenticatable;
-use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Event;
 use Illuminate\Support\ServiceProvider;
 use Vongola\Auth\Listeners\AuthEventSubscriber;

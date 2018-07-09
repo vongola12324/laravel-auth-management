@@ -2,7 +2,6 @@
 
 namespace Vongola\Auth;
 
-
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Session;
@@ -18,7 +17,8 @@ class AuthManager
     {
         $this->user = $user;
         $this->records = AuthRecord::where('user_type', '=', get_class($this->user))
-            ->where('user_id', '=', $this->user->getKey())->get();    }
+            ->where('user_id', '=', $this->user->getKey())->get();
+    }
 
     public function getAuthRecord()
     {
