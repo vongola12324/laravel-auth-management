@@ -63,10 +63,14 @@ class AuthEventSubscriber
         /** @var Authenticatable|User $user */
         $user = $event->user;
         $manager = $this->authService->user($user);
-        AuthRecord::where('user_type', '=', get_class($user))
+        $authRecordIds = AuthRecord::where('user_type', '=', get_class($user))
             ->where('user_id', '=', $user->getKey())
-            ->where('session_id', '=', session()->getId())
-            ->delete();
+            ->get()
+            ->filter(function ($authRecord) {
+                return decrypt($authRecord->session_id) == session()->getId();
+            })
+            ->pluck('id');
+        AuthRecord::whereIn('id', $authRecordIds)->delete();
         if (config('auth-management.logging')) {
             $this->logService->logoutLogging($user);
         }
