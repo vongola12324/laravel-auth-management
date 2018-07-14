@@ -4,7 +4,7 @@ namespace Vongola\Auth;
 
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Support\Collection;
-use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Cache;
 
 class AuthManager
 {
@@ -39,7 +39,7 @@ class AuthManager
                 continue;
             } else {
                 try {
-                    Session::forget($sid);
+                    Cache::flush($sid);
                 } catch (\Exception $e) {
                     // Do nothing...
                 } finally {
